@@ -1,42 +1,111 @@
-<div
-  class="test-anim flex flex-col w-[90%] gap-6 md:w-[70%] md:gap-8 xl:w-[60%] xl:gap-10 2xl:w-[50%] 2xl:mx-auto 2xl:gap-12"
->
-  <main class="uppercase mx-auto mb-4 testimonial-heading-container">
-    <h1
-      class="font-[Jost] font-[300] text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-center relative"
-    >
-      Testimonials
-      <span
-        class="inline-block font-[Inconsolata] font-[400] px-2 text-xs sm:text-sm md:text-base absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-      >
-        what client says
-      </span>
-    </h1>
-  </main>
+<!-- Section Title -->
+<div class="text-center">
+  <h2 class="text-3xl font-bold text-[3.5rem]">Client Testimonial</h2>
+</div>
 
-  <div class="testimonial-slider relative overflow-hidden h-[200px]">
-    <p class="testimonial-quote text-center text-lg xl:text-2xl">
-      “Testimonial 1 – Lorem ipsum dolor sit amet, consectetur adipiscing elit.”
-    </p>
+<!-- Swiper Container -->
+<div class="w-[90%] mx-auto mt-10">
+  <div class="swiper relative">
+    <div class="swiper-wrapper">
+      <!-- Slide 1 -->
+      <div class="swiper-slide">
+        <div
+          class="flex flex-col md:flex-row items-center justify-between gap-10"
+        >
+          <div class="md:w-1/2 w-full">
+            <img
+              src="../assets/images/client.png"
+              alt="Jared Warner"
+              class="w-full h-auto rounded-lg"
+              loading="lazy"
+            />
+          </div>
+          <div class="md:w-1/2 w-full flex flex-col gap-6 px-2 md:px-6 py-4">
+            <img
+              src="../assets/images/Quote.png"
+              alt="Quote Icon"
+              class="w-[60%] -mt-4 md:-mt-6"
+            />
+            <p class="text-lg md:text-2xl leading-relaxed tracking-wide">
+              But I must explain to you how all this mistaken idea of denouncing
+              pleasure and praising pain was born and I will give you a complete
+              account.
+            </p>
+            <div>
+              <p class="text-xl font-semibold">Jared Warner</p>
+              <p class="text-gray-500">CEO of Zeo</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    <p class="testimonial-quote text-center text-lg xl:text-2xl">
-      “Testimonial 2 – Their work is outstanding, fast, and super creative.”
-    </p>
-    <p class="testimonial-quote text-center text-lg xl:text-2xl">
-      “Testimonial 3 – Truly a pleasure to work with from start to finish.”
-    </p>
-    <p class="testimonial-quote text-center text-lg xl:text-2xl">
-      “Testimonial 4 – Professional, responsive, and results-driven!”
-    </p>
-  </div>
+      <!-- Slide 2 -->
+      <div class="swiper-slide">
+        <div
+          class="flex flex-col md:flex-row items-center justify-between gap-10"
+        >
+          <div class="md:w-1/2 w-full">
+            <img
+              src="../assets/images/client.png"
+              alt="Jane Smith"
+              class="w-full h-auto rounded-lg"
+              loading="lazy"
+            />
+          </div>
+          <div class="md:w-1/2 w-full flex flex-col gap-6 px-2 md:px-6 py-4">
+            <img
+              src="../assets/images/Quote.png"
+              alt="Quote Icon"
+              class="w-[60%] -mt-4 md:-mt-6"
+            />
+            <p class="text-lg md:text-2xl leading-relaxed tracking-wide">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Suspendisse varius enim in eros elementum tristique.
+            </p>
+            <div>
+              <p class="text-xl font-semibold">Jane Smith</p>
+              <p class="text-gray-500">CTO of Acme</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <div class="text-center testimonial-client-info">
-    <img
-      src="https://placehold.co/64x64/333333/E0E0E0?text=Client"
-      alt="client"
-      class="inline w-16 h-16 object-cover rounded-full"
-    />
-    <p class="my-2 text-base sm:text-lg font-semibold">Lucas Wolfer</p>
-    <span class="font-[200] text-xs sm:text-sm">CEO - RAINBAK</span>
+      <!-- Add more slides here as needed -->
+      <div class="swiper-slide">
+        <div
+          class="flex flex-col md:flex-row items-center justify-between gap-10"
+        >
+          <div class="md:w-1/2 w-full">
+            <img
+              src="../assets/images/client.png"
+              alt="Jared Warner"
+              class="w-full h-auto rounded-lg"
+              loading="lazy"
+            />
+          </div>
+          <div class="md:w-1/2 w-full flex flex-col gap-6 px-2 md:px-6 py-4">
+            <img
+              src="../assets/images/Quote.png"
+              alt="Quote Icon"
+              class="w-[60%] -mt-4 md:-mt-6"
+            />
+            <p class="text-lg md:text-2xl leading-relaxed tracking-wide">
+              But I must explain to you how all this mistaken idea of denouncing
+              pleasure and praising pain was born and I will give you a complete
+              account.
+            </p>
+            <div>
+              <p class="text-xl font-semibold">Jared Warner</p>
+              <p class="text-gray-500">CEO of Zeo</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pagination Dots -->
+
+    <!-- Arrows -->
   </div>
 </div>
+<!-- Swiper JS -->

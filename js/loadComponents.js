@@ -60,75 +60,6 @@ async function loadComponent(selector, url) {
       });
     } else if (selector === "#awards") {
       animateSplitText("#awards");
-    } else if (selector === "#testimonials") {
-      animateSplitText("#testimonials .test-anim");
-
-      document.fonts.ready.then(() => {
-        const quotes = gsap.utils.toArray("#testimonials .testimonial-quote");
-        let currentIndex = 0;
-
-        // Ensure only one visible at init
-        quotes.forEach((q, i) => {
-          gsap.set(q, {
-            opacity: i === 0 ? 1 : 0,
-            y: i === 0 ? 0 : 30,
-            zIndex: i === 0 ? 1 : 0,
-          });
-          q.classList.toggle("active", i === 0);
-        });
-
-        // Function to rotate testimonials
-        let rotationTimer; // Declare a variable to hold the delayedCall instance
-
-        const rotateTestimonials = () => {
-          const current = quotes[currentIndex];
-          const nextIndex = (currentIndex + 1) % quotes.length;
-          const next = quotes[nextIndex];
-
-          gsap.to(current, {
-            opacity: 0,
-            y: -30,
-            duration: 0.5,
-            ease: "power2.out",
-            onStart: () => current.classList.remove("active"),
-            onComplete: () => {
-              gsap.set(current, { zIndex: 0 }); // Lower z-index of the outgoing quote
-
-              gsap.set(next, { y: 30, zIndex: 1 }); // Set initial position for incoming quote
-              gsap.to(next, {
-                opacity: 1,
-                y: 0,
-                duration: 0.5,
-                ease: "power2.out",
-                onStart: () => next.classList.add("active"),
-                onComplete: () => {
-                  currentIndex = nextIndex;
-                  // Only continue the rotation if the section is still in view
-                  if (ScrollTrigger.isInViewport("#testimonials")) {
-                    rotationTimer = gsap.delayedCall(4, rotateTestimonials);
-                  }
-                },
-              });
-            },
-          });
-        };
-
-        // Only start rotating when section enters view
-        ScrollTrigger.create({
-          trigger: "#testimonials",
-          start: "top 70%",
-          once: true, // This ensures the timer is only initiated once on first entry
-          onEnter: () => {
-            rotationTimer = gsap.delayedCall(4, rotateTestimonials); // Start the first rotation
-          },
-          onLeaveBack: () => {
-            // Optional: Stop rotation if scrolling back up and out of view
-            if (rotationTimer) {
-              rotationTimer.kill(); // Kill the delayedCall if it exists
-            }
-          },
-        });
-      });
     } else if (selector === "footer") {
       animateSplitText("footer");
     } else if (selector === "#about") {
@@ -168,6 +99,20 @@ async function loadComponent(selector, url) {
             },
           });
         });
+      });
+    } else if (selector === "#testimonials") {
+      // ✅ Only initialize Swiper after the DOM is injected
+      new Swiper("#testimonials .swiper", {
+        loop: true,
+        speed: 600,
+        autoplay: {
+          delay: 4000,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: "#testimonials .swiper-pagination",
+          clickable: true,
+        },
       });
     }
 
