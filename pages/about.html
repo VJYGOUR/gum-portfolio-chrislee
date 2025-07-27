@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Me - Oguz Design</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #0d0d1a; /* Very dark blue/purple background */
+        color: #d1d5db; /* Light gray text for general content */
+        overflow-x: hidden; /* Prevent horizontal scroll due to animations */
+        /* Subtle geometric pattern */
+        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231a1a2a' fill-opacity='0.5'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zm0 30V30h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0 30V60h-2v4h-4v2h4v4h2v-4h4v-2h-4zM12 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zm0 30V30h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0 30V60h-2v4h-4v2h4v4h2v-4h4v-2h-4zM48 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zm0 30V30h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0 30V60h-2v4h-4v2h4v4h2v-4h4v-2h-4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      }
+
+      /* Custom styles for the bright yellow accent */
+      .accent-yellow {
+        background-color: #ffff00; /* Bright yellow */
+        color: #000; /* Black text on yellow */
+      }
+      .accent-yellow-text {
+        color: #ffff00; /* Bright yellow for text */
+      }
+
+      /* Custom style for the secondary highlight (white) */
+      .accent-white-text {
+        color: #ffffff; /* Pure white for secondary highlight */
+      }
+
+      /* Reusable Primary Action Button Style */
+      .primary-action-button {
+        background-color: transparent; /* Default transparent */
+        color: #ffff00; /* Yellow text */
+        border: 1px solid #ffff00; /* Yellow border */
+        border-radius: 9999px; /* full rounded */
+        padding: 0.75rem 1.75rem; /* py-3 px-7 */
+        font-weight: 600;
+        font-size: 0.875rem; /* text-sm */
+        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out,
+          transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      }
+      .primary-action-button:hover {
+        background-color: #ffff00; /* Yellow fill on hover */
+        color: #000; /* Black text on hover */
+        transform: scale(1.05);
+        box-shadow: 0 0 15px rgba(255, 255, 0, 0.6); /* Subtle yellow glow */
+        text-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Subtle text shadow on hover */
+      }
+
+      /* Sub-label for section headings (e.g., WHO AM I) */
+      .sub-label {
+        position: absolute;
+        font-family: "Inconsolata", monospace;
+        background-color: #1a1a2a; /* Dark background for the label */
+        color: #d1d5db; /* Light gray text for the label */
+        font-size: 0.75rem; /* text-xs */
+        padding: 0.25rem 0.6rem; /* Slightly more horizontal padding */
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 4px; /* Slightly rounded corners */
+        white-space: nowrap; /* Prevent wrapping */
+        letter-spacing: 0.08em; /* More spaced out */
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4); /* More pronounced shadow */
+        text-transform: uppercase; /* Ensure it's always uppercase */
+      }
+
+      /* Progress bar styling */
+      .progress-bar-bg {
+        background-color: #374151; /* gray-700 for bar background */
+      }
+      .progress-bar-fill {
+        background-color: #ffff00; /* Yellow accent for fill */
+      }
+
+      /* Mobile menu specific styles */
+      #mobile-menu {
+        transition: transform 0.3s ease-out;
+        transform: translateY(-100%); /* Start off-screen */
+      }
+      #mobile-menu.active {
+        transform: translateY(0); /* Slide in */
+      }
+
+      /* Profile image hover effect */
+      .profile-img-container {
+        position: relative;
+        display: inline-block;
+        border-radius: 9999px; /* Full rounded */
+        overflow: hidden; /* Ensures glow stays within circle */
+      }
+      .profile-img {
+        border: 44px solid #374151; /* Default border */
+        transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      }
+      .profile-img-container:hover .profile-img {
+        border-color: #ffff00; /* Yellow border on hover */
+        box-shadow: 0 0 20px rgba(255, 255, 0, 0.7); /* Stronger yellow glow */
+      }
+
+      /* Section divider line */
+      .section-divider {
+        height: 1px;
+        background: linear-gradient(
+          to right,
+          transparent,
+          #ffff00,
+          transparent
+        );
+        margin: 4rem auto; /* Adjust vertical spacing */
+        width: 80%; /* Width of the line */
+        opacity: 0.3; /* Subtle */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="min-h-screen flex flex-col bg-[#0d0d1a] text-white">
+      <div class="flex justify-end px-16 w-full py-6 md:px-24">
+        <a href="../index.html" class="underline">Back</a>
+      </div>
+      <main
+        class="flex-grow container mx-auto px-4 md:px-8 py-12 min-h-[101vh]"
+      >
+        <section class="text-center mb-16" id="hero-section">
+          <div class="mb-8 profile-img-container">
+            <img
+              src="/assets/images/profile.png"
+              alt="Your Profile"
+              class="rounded-full w-32 h-32 md:w-40 md:h-40 object-cover object-top profile-img mx-auto"
+            />
+          </div>
+          <h1
+            class="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 text-white"
+          >
+            Crafting Digital Experiences with
+            <span class="accent-yellow-text">Passion</span> and
+            <span class="accent-white-text">Precision</span>.
+          </h1>
+          <p class="text-base md:text-lg text-gray-400 max-w-3xl mx-auto">
+            As a dedicated Product Designer, I transform complex challenges into
+            elegant, user-friendly solutions that drive engagement and deliver
+            impact.
+          </p>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <section
+          class="my-16 px-4 sm:px-6 md:px-10 lg:px-24 xl:px-48"
+          id="my-journey-section"
+        >
+          <div class="relative inline-block mb-12">
+            <h2
+              class="relative font-extrabold text-4xl sm:text-5xl md:text-6xl uppercase text-white"
+            >
+              My Journey
+              <span class="sub-label">The Path I've Traveled</span>
+            </h2>
+          </div>
+          <div
+            class="text-gray-300 leading-relaxed text-base sm:text-lg md:text-xl"
+          >
+            <p class="mb-6">
+              My journey into product design began with a fascination for how
+              technology shapes human interaction. Starting with a background in
+              graphic design, I quickly realized my true calling lay in
+              understanding user behavior and building intuitive interfaces that
+              truly connect with people. Over the years, I've had the privilege
+              of working on diverse projects, from mobile applications to
+              large-scale web platforms, always focusing on the intersection of
+              aesthetics and functionality.
+            </p>
+            <p>
+              Each project is an opportunity to learn and grow, pushing the
+              boundaries of what's possible while keeping the user at the heart
+              of every decision. I thrive in collaborative environments,
+              believing that the best solutions emerge from a blend of diverse
+              perspectives and shared dedication.
+            </p>
+          </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <section
+          class="my-16 px-4 sm:px-6 md:px-10 lg:px-24 xl:px-48"
+          id="my-skills-section"
+        >
+          <div class="relative inline-block mb-12">
+            <h2
+              class="relative font-extrabold text-4xl sm:text-5xl md:text-6xl uppercase text-white"
+            >
+              My Skills
+              <span class="sub-label">What I Excel At</span>
+            </h2>
+          </div>
+          <div class="space-y-8 max-w-2xl mx-auto">
+            <div>
+              <div class="flex justify-between mb-2">
+                <span
+                  class="text-sm sm:text-base text-gray-400 uppercase tracking-wide"
+                  >Photoshop</span
+                >
+                <span class="text-sm sm:text-base text-gray-400">90%</span>
+              </div>
+              <div
+                class="relative w-full h-0.5 progress-bar-bg overflow-hidden rounded"
+              >
+                <div
+                  id="bar-photoshop"
+                  class="absolute top-0 left-0 h-full progress-bar-fill w-0"
+                ></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-2">
+                <span
+                  class="text-sm sm:text-base text-gray-400 uppercase tracking-wide"
+                  >Illustrator</span
+                >
+                <span class="text-sm sm:text-base text-gray-400">85%</span>
+              </div>
+              <div
+                class="relative w-full h-0.5 progress-bar-bg overflow-hidden rounded"
+              >
+                <div
+                  id="bar-illustrator"
+                  class="absolute top-0 left-0 h-full progress-bar-fill w-0"
+                ></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-2">
+                <span
+                  class="text-sm sm:text-base text-gray-400 uppercase tracking-wide"
+                  >Figma</span
+                >
+                <span class="text-sm sm:text-base text-gray-400">80%</span>
+              </div>
+              <div
+                class="relative w-full h-0.5 progress-bar-bg overflow-hidden rounded"
+              >
+                <div
+                  id="bar-figma"
+                  class="absolute top-0 left-0 h-full progress-bar-fill w-0"
+                ></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-2">
+                <span
+                  class="text-sm sm:text-base text-gray-400 uppercase tracking-wide"
+                  >Web Design</span
+                >
+                <span class="text-sm sm:text-base text-gray-400">90%</span>
+              </div>
+              <div
+                class="relative w-full h-0.5 progress-bar-bg overflow-hidden rounded"
+              >
+                <div
+                  id="bar-webdesign"
+                  class="absolute top-0 left-0 h-full progress-bar-fill w-0"
+                ></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-2">
+                <span
+                  class="text-sm sm:text-base text-gray-400 uppercase tracking-wide"
+                  >UI/UX Design</span
+                >
+                <span class="text-sm sm:text-base text-gray-400">95%</span>
+              </div>
+              <div
+                class="relative w-full h-0.5 progress-bar-bg overflow-hidden rounded"
+              >
+                <div
+                  id="bar-uiux"
+                  class="absolute top-0 left-0 h-full progress-bar-fill w-0"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <section
+          class="my-16 px-4 sm:px-6 md:px-10 lg:px-24 xl:px-48"
+          id="my-vision-section"
+        >
+          <div class="relative inline-block mb-12">
+            <h2
+              class="relative font-extrabold text-4xl sm:text-5xl md:text-6xl uppercase text-white"
+            >
+              My Vision
+              <span class="sub-label">Driving Principles</span>
+            </h2>
+          </div>
+          <p
+            class="text-gray-300 leading-relaxed text-base sm:text-lg md:text-xl max-w-3xl mx-auto"
+          >
+            My vision is to create digital products that are not only
+            aesthetically pleasing but also profoundly impactful. I believe in a
+            design process that is deeply rooted in empathy, continuous
+            iteration, and a commitment to accessibility. Every pixel and
+            interaction should serve a purpose, guiding users seamlessly towards
+            their goals while delighting them along the way. I'm passionate
+            about building bridges between complex technology and human needs,
+            ultimately contributing to a more intuitive and enjoyable digital
+            world.
+          </p>
+          <button class="primary-action-button my-12">LET'S COLLABORATE</button>
+        </section>
+      </main>
+
+      <footer
+        class="w-full py-4 text-center text-gray-600 text-xs md:text-sm bg-gray-900 mt-auto"
+      >
+        <div class="flex justify-center items-center space-x-4 mt-4">
+          <span class="text-gray-500 text-xs">v 1.0</span>
+          <span class="text-gray-500 text-xs">About Page</span>
+          <svg
+            width="30"
+            height="30"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="rounded-full bg-gray-800 text-gray-200 p-1"
+          >
+            <text
+              x="50%"
+              y="50%"
+              dominant-baseline="middle"
+              text-anchor="middle"
+              font-size="12"
+              font-weight="bold"
+              fill="currentColor"
+            >
+              SB
+            </text>
+          </svg>
+        </div>
+        <div
+          class="text-center text-sm sm:text-base text-gray-500 mt-8 pt-8 border-t border-gray-700"
+        >
+          &copy; 2025 Oguz Design. All rights reserved.
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Mobile menu toggle logic (reused from header component)
+      const mobileMenuButton = document.getElementById("mobile-menu-button");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const hamburgerIcon = document.getElementById("hamburger-icon");
+      const closeIcon = document.getElementById("close-icon");
+
+      // Check if the elements exist before adding event listeners
+      if (mobileMenuButton && mobileMenu && hamburgerIcon && closeIcon) {
+        mobileMenuButton.addEventListener("click", () => {
+          mobileMenu.classList.toggle("hidden");
+          mobileMenu.classList.toggle("active");
+          hamburgerIcon.classList.toggle("hidden");
+          closeIcon.classList.toggle("hidden");
+        });
+
+        mobileMenu.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", () => {
+            mobileMenu.classList.add("hidden");
+            mobileMenu.classList.remove("active");
+            hamburgerIcon.classList.remove("hidden");
+            closeIcon.classList.add("hidden");
+          });
+        });
+
+        window.addEventListener("resize", () => {
+          if (window.innerWidth >= 768) {
+            mobileMenu.classList.add("hidden");
+            mobileMenu.classList.remove("active");
+            hamburgerIcon.classList.remove("hidden");
+            closeIcon.classList.add("hidden");
+          }
+        });
+      }
+
+      // GSAP Animations for sections
+      // Hero section animates on load
+      gsap.from("#hero-section", {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        ease: "power3.out",
+        delay: 0.2, // Small delay after page load
+      });
+
+      // Other sections animate on scroll
+      function setupSectionAnimation(sectionId) {
+        gsap.from(sectionId, {
+          opacity: 0,
+          y: 50,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionId,
+            start: "top 80%", // When the top of the section enters 80% of the viewport
+            toggleActions: "play none none none", // Play once on enter
+          },
+        });
+      }
+
+      // Apply animations to each section (excluding hero, which is handled above)
+      setupSectionAnimation("#my-journey-section");
+      // setupSectionAnimation("#my-skills-section"); // Removed, as progress bar animation now handles its own trigger
+      setupSectionAnimation("#my-vision-section");
+
+      // GSAP for progress bar animations
+      document.addEventListener("DOMContentLoaded", () => {
+        const skills = [
+          { id: "#bar-photoshop", width: "90%" },
+          { id: "#bar-illustrator", width: "85%" },
+          { id: "#bar-figma", width: "80%" },
+          { id: "#bar-webdesign", width: "90%" },
+          { id: "#bar-uiux", width: "95%" },
+        ];
+
+        // Create a single ScrollTrigger for the entire skills section
+        // This will ensure all progress bar animations start when the section itself is in view
+        ScrollTrigger.create({
+          trigger: "#my-skills-section", // Trigger when the "My Skills" section is in view
+          start: "top 70%", // Adjust this value as needed. 'top 70%' means when the top of the trigger element hits 70% down the viewport.
+          onEnter: () => {
+            // Animate each skill bar
+            skills.forEach((skill, index) => {
+              gsap.to(skill.id, {
+                width: skill.width,
+                duration: 1.5,
+                delay: index * 0.1, // Stagger the animations
+                ease: "power3.out",
+              });
+            });
+          },
+          once: true, // Crucial: Only run this animation once when entering the trigger zone
+          // markers: true // Uncomment this for debugging to see trigger points (useful during development)
+        });
+      });
+    </script>
+  </body>
+</html>

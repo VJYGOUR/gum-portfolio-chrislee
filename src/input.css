@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .hero-bg {
+    background-image: url("../assets/images/profile.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .testimonial-bg {
+  }
+  .h1c {
+    color: #333333;
+  }
+}

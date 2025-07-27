@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Oguz Design - Contact</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        overflow-x: hidden; /* Prevent horizontal scroll due to animations */
+      }
+
+      /* Custom styles for the bright yellow accent */
+      .accent-yellow {
+        background-color: #ffff00; /* Bright yellow */
+        color: #000; /* Black text on yellow */
+      }
+      .accent-yellow-text {
+        color: #ffff00;
+      }
+
+      /* Animation for scroll reveal */
+      .animated-element {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+          transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .animated-element.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Form input focus styles for dark background */
+      .form-input-field-dark {
+        background-color: #333; /* Darker background for input */
+        color: #fff; /* White text */
+        border: 1px solid #555;
+        transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      }
+      .form-input-field-dark::placeholder {
+        color: #bbb; /* Lighter placeholder text */
+      }
+      .form-input-field-dark:focus {
+        outline: none;
+        border-color: #ffff00; /* Yellow on focus */
+        box-shadow: 0 0 0 3px rgba(255, 255, 0, 0.3); /* Yellow ring on focus */
+      }
+
+      /* Custom arrow animation */
+      .arrow-container {
+        position: relative;
+        width: 100%;
+        height: 2px; /* Line thickness */
+        background-color: #000;
+        margin: 20px 0;
+        overflow: hidden;
+      }
+
+      .arrow-line {
+        width: 100%;
+        height: 100%;
+        background-color: #000;
+        position: absolute;
+        left: 0;
+        top: 0;
+        transform-origin: left;
+        animation: drawLine 2s forwards ease-out;
+      }
+
+      .arrow-head {
+        position: absolute;
+        right: 0;
+        top: -4px; /* Adjust to center with line */
+        width: 0;
+        height: 0;
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+        border-left: 8px solid #000;
+        animation: fadeInArrowHead 2s forwards ease-out;
+      }
+
+      @keyframes drawLine {
+        0% {
+          transform: scaleX(0);
+        }
+        50% {
+          transform: scaleX(1);
+        }
+        100% {
+          transform: scaleX(1);
+        }
+      }
+
+      @keyframes fadeInArrowHead {
+        0% {
+          opacity: 0;
+        }
+        70% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      /* Responsive adjustments for arrow */
+      @media (max-width: 1023px) {
+        /* Below lg breakpoint */
+        .arrow-container {
+          display: none; /* Hide arrow on smaller screens if it doesn't fit the flow */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Main container for the entire page - White background -->
+    <div class="min-h-screen flex flex-col bg-white text-black">
+      <!-- Header Section - Adjusted for new design -->
+      <div class="flex justify-end px-16 w-full py-6 md:px-24">
+        <a href="../index.html" class="underline">Back</a>
+      </div>
+
+      <!-- Main Content Section -->
+      <main class="flex-grow grid grid-cols-1 lg:grid-cols-2">
+        <!-- Left Section: Heading and Contact Info -->
+        <section
+          class="flex flex-col justify-center p-8 md:p-12 lg:p-20 bg-white text-black"
+        >
+          <h1
+            class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold mb-8 leading-tight animated-element"
+          >
+            Let's get <br />in touch
+          </h1>
+          <p
+            class="text-lg md:text-xl text-gray-700 mb-12 animated-element"
+            data-delay="100"
+          >
+            Don't be afraid to say hello with us!
+          </p>
+
+          <div
+            class="space-y-6 md:space-y-8 text-gray-800 animated-element"
+            data-delay="200"
+          >
+            <div>
+              <h3 class="text-lg md:text-xl font-semibold mb-1">Phone</h3>
+              <p class="text-base md:text-lg text-gray-700">(+) 578-365-379</p>
+            </div>
+            <div>
+              <h3 class="text-lg md:text-xl font-semibold mb-1">Email</h3>
+              <p class="text-base md:text-lg text-gray-700">hello@slabs.com</p>
+            </div>
+            <div>
+              <h3 class="text-lg md:text-xl font-semibold mb-1">Office</h3>
+              <p class="text-base md:text-lg text-gray-700">
+                230 Norman Street New York, <br />QC (USA) H8R 1A1
+              </p>
+              <a
+                href="https://maps.google.com/?q=230+Norman+Street+New+York"
+                target="_blank"
+                class="text-blue-600 hover:underline text-sm md:text-base flex items-center mt-2"
+              >
+                See on Google Map
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  class="w-4 h-4 ml-1"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Right Section: Form and Arrow -->
+        <section
+          class="flex flex-col p-8 md:p-12 lg:p-20 bg-black text-white relative"
+        >
+          <!-- Arrow and Text Container -->
+          <div
+            class="absolute top-1/2 left-0 transform -translate-x-full -translate-y-1/2 w-full lg:w-[calc(100%+100px)] hidden lg:flex items-center justify-end pr-8"
+          >
+            <div class="flex items-center w-full max-w-sm">
+              <div class="arrow-container flex-grow h-0.5 bg-black">
+                <div class="arrow-line"></div>
+                <div class="arrow-head"></div>
+              </div>
+              <p class="text-gray-400 text-sm ml-4 w-48 flex-shrink-0">
+                Great! We're excited to hear from you and let's start something
+                special together. Call us for any inquiry.
+              </p>
+            </div>
+          </div>
+
+          <h2
+            class="text-2xl md:text-3xl font-bold mb-8 animated-element"
+            data-delay="300"
+          >
+            Contact
+          </h2>
+          <form
+            class="space-y-6 animated-element"
+            data-delay="400"
+            action="https://formspree.io/f/{UR_FORM_ID}"
+            method="POST"
+          >
+            <div>
+              <label
+                for="name-dark"
+                class="block text-sm md:text-base font-medium text-gray-400 mb-1"
+                >Name</label
+              >
+              <input
+                type="text"
+                id="name-dark"
+                name="name"
+                class="form-input-field-dark mt-1 block w-full px-4 py-2 rounded-md shadow-sm sm:text-sm md:text-base"
+                placeholder="Your Name"
+                required
+              />
+            </div>
+            <div>
+              <label
+                for="email-dark"
+                class="block text-sm md:text-base font-medium text-gray-400 mb-1"
+                >Email</label
+              >
+              <input
+                type="email"
+                id="email-dark"
+                name="email"
+                class="form-input-field-dark mt-1 block w-full px-4 py-2 rounded-md shadow-sm sm:text-sm md:text-base"
+                placeholder="your@example.com"
+                required
+              />
+            </div>
+            <div>
+              <label
+                for="phone-dark"
+                class="block text-sm md:text-base font-medium text-gray-400 mb-1"
+                >Phone</label
+              >
+              <input
+                type="tel"
+                id="phone-dark"
+                name="phone"
+                class="form-input-field-dark mt-1 block w-full px-4 py-2 rounded-md shadow-sm sm:text-sm md:text-base"
+                placeholder="Your Phone Number"
+              />
+            </div>
+            <div>
+              <label
+                for="subject-dark"
+                class="block text-sm md:text-base font-medium text-gray-400 mb-1"
+                >Subject</label
+              >
+              <input
+                type="text"
+                id="subject-dark"
+                name="subject"
+                class="form-input-field-dark mt-1 block w-full px-4 py-2 rounded-md shadow-sm sm:text-sm md:text-base"
+                placeholder="Subject of your inquiry"
+              />
+            </div>
+            <div>
+              <label
+                for="message-dark"
+                class="block text-sm md:text-base font-medium text-gray-400 mb-1"
+                >Tell us about your interested in</label
+              >
+              <textarea
+                id="message-dark"
+                name="message"
+                rows="5"
+                class="form-input-field-dark mt-1 block w-full px-4 py-2 rounded-md shadow-sm sm:text-sm md:text-base"
+                placeholder="Your message..."
+                required
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              class="w-full py-3 px-6 rounded-md font-semibold text-base md:text-lg transition-all duration-300 hover:opacity-90 accent-yellow"
+            >
+              Send to us
+            </button>
+          </form>
+        </section>
+      </main>
+
+      <!-- Footer Section - Reused for consistency -->
+      <footer
+        class="w-full py-4 text-center text-gray-600 text-xs md:text-sm bg-white border-t border-gray-200"
+      >
+        &copy; 2025 Oguz Design. All rights reserved.
+      </footer>
+    </div>
+
+    <script>
+      // JavaScript for scroll reveal animation for sections
+      document.addEventListener("DOMContentLoaded", () => {
+        const animatedElements = document.querySelectorAll(".animated-element");
+
+        const observerOptions = {
+          root: null, // Use the viewport as the root
+          rootMargin: "0px",
+          threshold: 0.1, // Trigger when 10% of the item is visible
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const delay = entry.target.dataset.delay || 0;
+              setTimeout(() => {
+                entry.target.classList.add("is-visible");
+              }, delay);
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+
+        animatedElements.forEach((element) => {
+          observer.observe(element);
+        });
+      });
+    </script>
+  </body>
+</html>

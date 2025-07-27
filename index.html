@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./src/output.css" rel="stylesheet" />
+
+    <!-- Fonts and GSAP CDN -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Jost:ital,wght@0,100..900;1,100..900&family=Manrope:wght@200..800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+
+    <title>Chris Lee - Portfolio</title>
+
+    <style>
+      body {
+        font-family: "Manrope", sans-serif;
+        padding-right: 208px;
+        overflow-x: hidden;
+        background-color: rgb(255, 245, 237);
+        color: #1a202c;
+      }
+      /* Optional: Remove excessive vertical space caused by stacked hidden elements */
+      .testimonial-slider {
+        position: relative;
+        height: 120px; /* or whatever height works with your design */
+        overflow: hidden;
+      }
+
+      .testimonial-quote {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        pointer-events: none; /* Prevent invisible text from being interactive */
+      }
+
+      .testimonial-quote.active {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        z-index: 1;
+        pointer-events: auto;
+      }
+
+      .underline-text {
+        position: relative;
+        display: inline-block;
+      }
+      .underline-text::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+        width: 100%;
+        height: 4px;
+        background-color: rgb(183, 108, 82);
+        border-radius: 2px;
+      }
+
+      .navbar {
+        width: 208px;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.08);
+        border-left: 1px solid rgba(0, 0, 0, 0.05);
+        backdrop-filter: blur(8px);
+        padding: 2rem 0;
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* FIXED */
+        justify-content: flex-start;
+        transform: translateX(100%);
+        transition: transform 0.6s ease-out;
+      }
+
+      .navbar-link {
+        font-weight: 500;
+        padding: 0.75rem 1.5rem;
+        transition: color 0.2s ease, transform 0.2s ease;
+        text-align: right;
+        width: 100%;
+        position: relative;
+      }
+
+      .navbar-link:hover {
+        transform: translateX(-5px);
+      }
+
+      .navbar-link.active-link {
+        font-weight: 700;
+      }
+
+      .navbar-link.active-link::after {
+        content: "";
+        position: absolute;
+        width: calc(100% - 1.5rem);
+        height: 3px;
+        bottom: 0.5rem;
+        right: 0.75rem;
+        background-color: whitesmoke;
+        transform-origin: right;
+        transform: scaleX(1);
+        transition: transform 0.3s ease-out;
+      }
+
+      .navbar-link:not(.active-link)::after {
+        transform: scaleX(0);
+      }
+
+      /* Mobile to laptop layout */
+      @media (max-width: 1024px) {
+        body {
+          padding-right: 0;
+        }
+
+        .navbar {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: auto;
+          width: 100%;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          padding: 1rem;
+          transform: none !important;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+          border-left: none;
+          z-index: 1000;
+        }
+
+        .navbar-links-container {
+          display: none;
+          flex-direction: column;
+          width: 208px;
+          background-color: rgb(183, 108, 82);
+          position: fixed;
+          top: 0;
+          left: 0;
+          height: 100vh;
+          padding-top: 5rem;
+          transform: translateX(-100%);
+          transition: transform 0.3s ease-out;
+          box-shadow: 5px 0 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .navbar-links-container.is-open {
+          display: flex;
+          transform: translateX(0);
+        }
+
+        .navbar-link {
+          text-align: right;
+          padding: 0.75rem 1.5rem;
+        }
+
+        .navbar-link.active-link::after {
+          right: 0.75rem;
+          transform: scaleX(1);
+          transform-origin: right;
+        }
+
+        .md\:hidden {
+          display: flex !important;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+        }
+
+        .hidden.md\:flex {
+          display: none !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ✅ Fixed Brand on LEFT always -->
+    <div class="fixed top-0 left-0 z-50 p-4 sm:p-6 lg:p-8 text-2xl font-bold">
+      <a href="#home-section" class="text-[rgb(183,108,82)]">Chris Lee</a>
+    </div>
+
+    <!-- ✅ Navbar -->
+    <nav id="header" class="navbar bg-[rgb(183,108,82)] text-white">
+      <div
+        class="container mx-auto w-full flex items-center justify-end px-4 sm:px-6 lg:px-8"
+      >
+        <!-- ✅ Hamburger icon on the right (mobile only) -->
+        <div class="md:hidden flex justify-around items-center text-2xl">
+          <a href="#home-section">Chris Lee</a>
+
+          <button id="mobile-menu-button" class="focus:outline-none z-50">
+            <svg
+              id="hamburger-icon"
+              class="w-8 h-8"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+            <svg
+              id="close-icon"
+              class="w-8 h-8 hidden"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- ✅ Slide-in links -->
+      <div class="flex flex-col space-y-4 w-full navbar-links-container">
+        <a href="#hero" class="navbar-link">Home</a>
+        <a href="#about" class="navbar-link">About</a>
+        <a href="#portfolio" class="navbar-link">Portfolio</a>
+        <a href="#awards" class="navbar-link">Achievements</a>
+        <a href="#blogs" class="navbar-link">Blogs</a>
+        <a href="#testimonials" class="navbar-link">Testimonials</a>
+        <a href="#contact" class="navbar-link">Contact</a>
+      </div>
+    </nav>
+
+    <!-- Page Sections -->
+    <section
+      id="hero"
+      class="min-h-screen pt-[80px] flex items-center justify-center text-[#1a202c]"
+    ></section>
+    <section
+      id="about"
+      class="bg-[rgb(183,108,82)] py-[50px] text-white flex items-center justify-center"
+    ></section>
+    <section
+      id="portfolio"
+      class="min-h-screen bg-[rgb(255,240,220)] py-[50px] text-[rgb(90,80,75)] flex items-center justify-center"
+    ></section>
+    <section
+      id="awards"
+      class="pt-16 pb-[8rem] bg-[rgb(255,255,250)] text-[rgb(90,80,75)] px-4 sm:px-6 md:min-h-[553px] md:px-10 lg:px-24 xl:px-48"
+    ></section>
+    <section
+      id="blogs"
+      class="bg-[rgb(128,90,72)] text-white py-16 sm:px-6 md:px-10 lg:px-24 xl:px-48"
+    ></section>
+    <section
+      id="testimonials"
+      class="testimonial-bg flex justify-center items-center py-[50px] h-[450px] lg:h-[500px] xl:h-[550px] 2xl:h-[600px] bg-[rgb(255,182,147)] text-[rgb(90,80,75)]"
+    ></section>
+    <section
+      id="contact"
+      class="flex flex-col lg:flex-row bg-white rounded-2xl shadow-xl w-full overflow-hidden mx-auto"
+    ></section>
+    <footer
+      id="footer"
+      class="bg-[rgb(90,80,75)] text-white px-4 sm:px-6 lg:px-8 py-12"
+    ></footer>
+
+    <!-- JavaScript -->
+    <script src="/js/loadComponents.js"></script>
+    <script>
+      const navbar = document.querySelector(".navbar");
+      const navLinks = document.querySelectorAll(".navbar-link");
+      const sections = document.querySelectorAll("section[id]");
+
+      window.addEventListener("load", () => {
+        if (window.innerWidth >= 1024) {
+          gsap.to(navbar, {
+            x: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            delay: 0.2,
+          });
+        }
+      });
+
+      sections.forEach((section) => {
+        ScrollTrigger.create({
+          trigger: section,
+          start: "top center",
+          end: "bottom center",
+          toggleActions: "play pause resume reset",
+          onEnter: () => setActive(section),
+          onEnterBack: () => setActive(section),
+        });
+      });
+
+      function setActive(section) {
+        navLinks.forEach((link) => {
+          link.classList.remove("active-link");
+          if (link.getAttribute("href") === `#${section.id}`) {
+            link.classList.add("active-link");
+          }
+        });
+      }
+
+      navLinks.forEach((link) => {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute("href");
+          const targetSection = document.querySelector(targetId);
+          if (targetSection) {
+            gsap.to(window, {
+              duration: 1,
+              scrollTo: { y: targetSection, offsetY: 20 },
+              ease: "power2.out",
+            });
+          }
+        });
+      });
+
+      const mobileMenuButton = document.getElementById("mobile-menu-button");
+      const navLinksContainer = document.querySelector(
+        ".navbar-links-container"
+      );
+      const hamburgerIcon = document.getElementById("hamburger-icon");
+      const closeIcon = document.getElementById("close-icon");
+
+      if (mobileMenuButton && navLinksContainer && hamburgerIcon && closeIcon) {
+        mobileMenuButton.addEventListener("click", () => {
+          navLinksContainer.classList.toggle("is-open");
+          hamburgerIcon.classList.toggle("hidden");
+          closeIcon.classList.toggle("hidden");
+        });
+      }
+
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          if (
+            window.innerWidth < 1024 &&
+            navLinksContainer.classList.contains("is-open")
+          ) {
+            navLinksContainer.classList.remove("is-open");
+            hamburgerIcon.classList.remove("hidden");
+            closeIcon.classList.add("hidden");
+          }
+        });
+      });
+
+      window.addEventListener("resize", () => {
+        if (
+          window.innerWidth >= 1024 &&
+          navLinksContainer.classList.contains("is-open")
+        ) {
+          navLinksContainer.classList.remove("is-open");
+          hamburgerIcon.classList.remove("hidden");
+          closeIcon.classList.add("hidden");
+        }
+      });
+    </script>
+  </body>
+</html>

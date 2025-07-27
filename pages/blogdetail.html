@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog Post Title - Oguz Design</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        overflow-x: hidden; /* Prevent horizontal scroll due to animations */
+        background-color: #0d0d1a; /* Very dark blue/purple background */
+      }
+
+      /* Custom styles for the bright yellow accent */
+      .accent-yellow {
+        background-color: #ffff00; /* Bright yellow */
+        color: #000; /* Black text on yellow */
+      }
+      .accent-yellow-text {
+        color: #ffff00;
+      }
+
+      /* Animation for general elements */
+      .animated-element {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+          transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .animated-element.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Blog content specific styling */
+      .blog-content h2 {
+        font-size: 1.875rem; /* text-3xl */
+        font-weight: 700; /* font-bold */
+        margin-top: 2.5rem; /* mt-10 */
+        margin-bottom: 1rem; /* mb-4 */
+        color: #e5e7eb; /* gray-200 */
+      }
+      .blog-content h3 {
+        font-size: 1.5rem; /* text-2xl */
+        font-weight: 600; /* font-semibold */
+        margin-top: 2rem; /* mt-8 */
+        margin-bottom: 0.75rem; /* mb-3 */
+        color: #d1d5db; /* gray-300 */
+      }
+      .blog-content p {
+        margin-bottom: 1.25rem; /* mb-5 */
+        line-height: 1.75; /* leading-relaxed */
+        color: #a0a0a0; /* gray-400 */
+      }
+      .blog-content ul,
+      .blog-content ol {
+        list-style-position: inside;
+        margin-bottom: 1.25rem; /* mb-5 */
+        padding-left: 1.25rem; /* pl-5 */
+        color: #a0a0a0; /* gray-400 */
+      }
+      .blog-content ul {
+        list-style-type: disc;
+      }
+      .blog-content ol {
+        list-style-type: decimal;
+      }
+      .blog-content li {
+        margin-bottom: 0.5rem; /* mb-2 */
+      }
+      .blog-content img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 0.5rem; /* rounded-lg */
+        margin-top: 2rem; /* mt-8 */
+        margin-bottom: 2rem; /* mb-8 */
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* subtle shadow */
+      }
+      .blog-content a {
+        color: #ffff00; /* Yellow links */
+        text-decoration: underline;
+        transition: color 0.2s ease-in-out;
+      }
+      .blog-content a:hover {
+        color: #e5e500; /* Slightly darker yellow on hover */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Main container for the entire page -->
+    <div class="min-h-screen flex flex-col bg-[#0d0d1a] text-white">
+      <!-- Header Section - Reused from Testimonial page for consistency -->
+      <div class="flex justify-end px-16 w-full py-6 md:px-24">
+        <a href="./blog.html" class="underline">Back</a>
+      </div>
+
+      <!-- Main Content Section for Blog Detail Page -->
+      <main class="flex-grow py-16 px-4 md:px-8 container mx-auto max-w-4xl">
+        <!-- Blog Post Header -->
+        <section class="text-center mb-12 animated-element">
+          <h1
+            class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 leading-tight text-white"
+          >
+            The Future of UI/UX: Trends to Watch in 2025
+          </h1>
+          <p class="text-gray-400 text-sm md:text-base mb-6">
+            By <span class="font-medium text-white">Oguz Design</span> &bull;
+            July 17, 2025 &bull; 8 min read
+          </p>
+          <img
+            src="https://placehold.co/1200x600/1a1a2a/FFFF00?text=Blog+Hero+Image"
+            alt="Blog Hero Image"
+            class="w-full rounded-lg shadow-xl animated-element"
+            data-delay="100"
+          />
+        </section>
+
+        <!-- Blog Post Content -->
+        <article
+          class="blog-content text-gray-400 text-base md:text-lg leading-relaxed animated-element"
+          data-delay="200"
+        >
+          <p>
+            In the rapidly evolving landscape of digital products, user
+            interface (UI) and user experience (UX) design continue to be
+            pivotal in determining success. As we look towards 2025, several
+            exciting trends are emerging that promise to reshape how we interact
+            with technology. This article delves into these key trends, offering
+            insights for designers and developers alike.
+          </p>
+
+          <h2>1. Hyper-Personalization and Adaptive Interfaces</h2>
+          <p>
+            Gone are the days of one-size-fits-all interfaces. Users now expect
+            experiences tailored precisely to their needs, preferences, and even
+            emotional states. Adaptive interfaces, powered by AI and machine
+            learning, will dynamically adjust layouts, content, and
+            functionalities in real-time. This means more intuitive navigation
+            and highly relevant information delivery, making every interaction
+            feel uniquely crafted for the individual.
+          </p>
+          <img
+            src="https://placehold.co/800x450/2a2a3a/FFFF00?text=Personalization+Example"
+            alt="Personalization Example"
+          />
+          <p>
+            For instance, an e-commerce app might change its product
+            recommendations and even its visual theme based on your recent
+            browsing history, time of day, or location. The challenge for
+            designers will be to balance personalization with user control and
+            data privacy.
+          </p>
+
+          <h2>2. Immersive Experiences: AR/VR Integration</h2>
+          <p>
+            Augmented Reality (AR) and Virtual Reality (VR) are no longer
+            confined to gaming. They are increasingly being integrated into
+            everyday applications, from retail to education and remote work.
+            Designers will need to master spatial design principles,
+            understanding how users navigate and interact within 3D
+            environments.
+          </p>
+          <ul>
+            <li>
+              **Retail:** Virtual try-ons for clothing or furniture placement in
+              your home.
+            </li>
+            <li>
+              **Education:** Interactive 3D models for learning complex
+              subjects.
+            </li>
+            <li>
+              **Collaboration:** Virtual meeting spaces that mimic real-world
+              interactions.
+            </li>
+          </ul>
+          <p>
+            The focus will shift from flat screens to designing for depth,
+            presence, and natural gestures.
+          </p>
+
+          <h2>3. Ethical AI and Transparent Design</h2>
+          <p>
+            As AI becomes more pervasive, the emphasis on ethical AI and
+            transparent design will grow. Users need to understand how their
+            data is being used and how AI-driven decisions are made. Designers
+            will play a crucial role in building trust by creating interfaces
+            that clearly communicate AI's capabilities, limitations, and the
+            rationale behind its suggestions.
+          </p>
+          <ol>
+            <li>Clear consent mechanisms.</li>
+            <li>Explainable AI (XAI) interfaces.</li>
+            <li>Easy access to privacy settings.</li>
+            <li>Human oversight and intervention points.</li>
+          </ol>
+          <p>
+            This trend underscores the importance of human-centered AI design,
+            where technology serves humanity responsibly.
+          </p>
+
+          <h2>4. Micro-interactions and Haptic Feedback</h2>
+          <p>
+            The subtle details make a big difference. Micro-interactions (small
+            animations, sounds, and visual cues) will continue to evolve,
+            providing delightful feedback and guiding users intuitively. Coupled
+            with haptic feedback (tactile sensations), these interactions will
+            create a more visceral and engaging experience.
+          </p>
+          <p>
+            Think of a gentle vibration when a message is sent, or a subtle
+            bounce animation when an item is added to a cart. These small
+            touches enhance usability and add personality to digital products.
+          </p>
+
+          <h2>Conclusion</h2>
+          <p>
+            The future of UI/UX design is dynamic and full of opportunities.
+            Designers who embrace these trends—hyper-personalization, immersive
+            experiences, ethical AI, and refined micro-interactions—will be at
+            the forefront of creating truly impactful and engaging digital
+            products. Staying curious and continuously learning will be key to
+            navigating this exciting landscape.
+          </p>
+        </article>
+
+        <!-- Call to Action / Navigation -->
+        <section
+          class="text-center pt-12 mt-12 border-t border-gray-700 animated-element"
+          data-delay="300"
+        >
+          <h2 class="text-2xl md:text-3xl font-bold text-white mb-6">
+            Explore More Insights
+          </h2>
+          <a
+            href="./blog.html"
+            class="inline-flex items-center px-8 py-3 rounded-md font-semibold text-base md:text-lg transition-all duration-300 hover:opacity-90 accent-yellow"
+          >
+            View All Blog Posts
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              class="w-5 h-5 ml-2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
+              />
+            </svg>
+          </a>
+        </section>
+      </main>
+
+      <!-- Footer Section - Reused for consistency -->
+      <footer
+        class="w-full py-4 text-center text-gray-600 text-xs md:text-sm bg-transparent relative z-10"
+      >
+        <!-- Placeholder for bottom elements -->
+        <div class="flex justify-center items-center space-x-4 mt-4">
+          <span class="text-gray-500 text-xs">v 1.3</span>
+          <span class="text-gray-500 text-xs">C6b_2022-2023.txt</span>
+          <img
+            src="https://placehold.co/30x30/000/FFF?text=SB"
+            alt="SB"
+            class="rounded-full"
+          />
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      // JavaScript for scroll reveal animation for elements
+      document.addEventListener("DOMContentLoaded", () => {
+        const animatedElements = document.querySelectorAll(".animated-element");
+
+        const observerOptions = {
+          root: null, // Use the viewport as the root
+          rootMargin: "0px",
+          threshold: 0.1, // Trigger when 10% of the item is visible
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const delay = entry.target.dataset.delay || 0;
+              setTimeout(() => {
+                entry.target.classList.add("is-visible");
+              }, delay);
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+
+        animatedElements.forEach((element) => {
+          observer.observe(element);
+        });
+      });
+    </script>
+  </body>
+</html>
