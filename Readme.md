@@ -4,9 +4,7 @@ A sleek, modern, and fully responsive portfolio template designed for developers
 
 ## 📸 Demo
 
-[Live Demo] https://portfolio-02-six.vercel.app/index.html
-
----
+https://gum-portfolio-chrislee.vercel.app/
 
 ## 🚀 Features
 
