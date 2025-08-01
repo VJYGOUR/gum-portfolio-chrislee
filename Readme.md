@@ -58,11 +58,12 @@ A sleek, modern, and fully responsive portfolio template designed for developers
 
 # Navigate into the directory
 
-cd portfolio-template
+cd gum-portfolio-chrislee
 
 # Install dependencies
 
 npm install
+npx tailwindcss -i ./src/input.css -o ./src/output.css --watch
 
 # go live
 
